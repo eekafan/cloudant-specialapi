@@ -1,13 +1,15 @@
 
 # Introduction
+## Release Information
+This document version is aligned with Release 26.0.0
 ## Document Purpose
-The purpose of this document is to provide a user guide for the cloudant-specialapi tool, as at R18 of the tool, delivered by IBM Services. 
+The purpose of this document is to provide a user guide for the cloudant-specialapi tool, delivered by IBM Services. 
 The tool is provided on an opensource basis, and customers are free to enhance or modify the tool in any way. Such changes may of course modify the features, options, and descriptions provided in this document.
 Installation instructions and guidance for integration with monitoring & alerting subsystems in the customer's deployment are covered in other documents
 ## Intended Audience 
 The intended audience for this document are IBM customers who are deploying Cloudant Local Edition Clusters, and wish to use the specialapi features in the management of operations on their clusters.
 ## Commercial Clarification 
-This document . 
+ 
 This document does not amend in any way existing agreed terms and conditions of service, and readers are referred to IBM client representatives for any issues concerning terms and condition of service.
 ## Notices 
 INTERNATIONAL BUSINESS MACHINES CORPORATION PROVIDES THIS PUBLICATION "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE. Some jurisdictions do not allow disclaimer of express or implied warranties in certain transactions, therefore, this statement may not apply to you.
