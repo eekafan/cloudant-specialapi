@@ -3,15 +3,20 @@
 The special api can be disabled by stopping the service.
 You can test if the api is available by checking the _api endpoint.
 eg  
-```curl http://activesn.bkp.ibm.com/_api```  
-```{
+  
+```  
+curl http://activesn.bkp.ibm.com/_api  
+   
+{
   "cloudant special api": "Welcome",
   "version": "1.0.0"
-}```    
+} 
+```    
   
 You will see a 503 error if it is unavailable  
   
-```curl http://activesn/_api   
+``` 
+curl http://activesn/_api   
 <html><body><h1>503 Service Unavailable</h1>
 No server is available to handle this request.
 </body></html>  
