@@ -362,5 +362,5 @@ from smoosh_stats where cluster=$cluster
 #### Example dashboard
 
 [dashboard]: dashboard.png
-[dashboard]
+![dashboard]
  
