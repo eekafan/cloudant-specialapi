@@ -35,7 +35,7 @@ curl -u middleamd:*** "http://activesn.bkp.ibm.com/_api/perfagent?scope=database
 not available via api call	/usr/bin/python /opt/cloudant-specialapi/compactionagent.py -x  /opt/cloudant-specialapi/perfagent_connection.info
 
 #	Cron-based Collection to Postgres
-[cron setup](#cron-based-collection-to-postgres)  
+ 
 
 The command line option can be used to setup regular minute-by-minute metrics collection, which is persisted to a _postgres_ database, for servicing the _grafana_ dashboards.
 
@@ -272,7 +272,8 @@ and
 `$ psql -U cloudant -d postgres -h postgres-host -f /opt/cloudant-specialapi/compactionagent_postgres_drop.sql`
 
 
-If ok, then setup the per\_minute cronjobs using the example in `/opt/cloudant-specialapi/crontab_example` see also [setup cron] (#cron-based-collection-to-postgres)  
+If ok, then setup the per\_minute cronjobs using the example in `/opt/cloudant-specialapi/crontab_example` see also [cron setup](#cron-based-collection-to-postgres) 
+
 1)	modify centos65-loader2.ibm.com to be your postgres-server hostname  
 2)	modify activesn.bkp.ibm.com to be your load-balancer logfile source  
 3)	add the line to root's crontab  
