@@ -289,45 +289,78 @@ The logfile `/var/log/cloudant_perfagent.log` provides run-by-run logging of the
 You can also debug by looking at the mail output of the cronjob, and also by commenting out the `set -x` line in `/opt/cloudant-specialapi/perfagent_cronscript/perfagent_every_minute.sh`
 
 ### grafana server
-Grafana is installed via yum on its server:-
+Grafana is installed via yum on its server. Grafana is frequently updated. The instructions below are an example and apply to grafana-4.6.3-1 only.
 
 For RHEL7.4, do this as root:
-1)	$ yum -y install https://download.postgresql.org/pub/repos/yum/9.4/redhat/rhel-7-x86_64/pgdg-redhat94-9.4-2.noarch.rpm
-2)	$ yum -y install postgresql94
-3)	yum -y install https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana-4.6.3-1.x86_64.rpm
-4)	systemctl enable grafana-server
-5)	systemctl restart grafana-server
+1)	`$ yum -y install https://download.postgresql.org/pub/repos/yum/9.4/redhat/rhel-7-x86_64/pgdg-redhat94-9.4-2.noarch.rpm`
+2)	`$ yum -y install postgresql94`
+3)	`yum -y install https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana-4.6.3-1.x86_64.rpm`
+4)	`systemctl enable grafana-server`
+5)	`systemctl restart grafana-server`
 
-Grafana is configured via the web on port 3000.
+Grafana is configured via the web on port 3000.  
 Access grafana with account 'admin/admin'. Change credentials as you wish.
 
-1)	Set up a datasource ->
-a.	type = PostgreSQL
-b.	host = postgreshost:5432
-c.	database = postgres
-d.	user = cloudant
-e.	password = cloudant
-f.	SSL mode = disable
-g.	name = cloudantstats
-h.	Save & test
-2)	From /opt/cloudant-specialapi/grafana_dashboards copy the dashboards to your desktop client pc or mac. Then import via grafana home page. Choose cloudantstats as your datasource.
-3)	The dashboards use templating to delineate projects (using _ as the project boundary marker), and also to set node numbers per cluster.
+1)	Set up a datasource: 
 
-SQL for project variable is:
-SELECT CASE WHEN substring(database,0,position('_' in database)) = '' THEN 'others' ELSE substring(database,0,position('_' in database)) END as project from db_stats where cluster=$cluster and database is not null group by project order by project			
+```
+a)	type = PostgreSQL  
+b)	host = postgreshost:5432  
+c)	database = postgres  
+d)	user = cloudant  
+e)	password = cloudant  
+f)	SSL mode = disable  
+g)	name = cloudantstats 
+```   
+   
+2)	Populate dashboards using a browser:  
 
-	SQL for num_nodes is
-SELECT case when cluster like '%activesn.bkp.ibm.com' then 1 when cluster like '%cl11c74vip.ibm.com' then 3 else 3 end from smoosh_stats where cluster=$cluster
+```
+a) from /opt/cloudant-specialapi/grafana_dashboards copy the dashboards to your desktop client pc or mac. 
+b) Then import via grafana home page. Choose cloudantstats as your datasource.
+```
 
- 	SQL for shards_per_node variable is
-SELECT case when cluster like '%activesn.bkp.ibm.com' then 8 when cluster like '%cl11c74vip.ibm.com' then 8 else 8 end from smoosh_stats where cluster=$cluster
+3)	Adjust the templating to fit your project naming and sharding:  
 
-	Change this logic in the Settings->Templating to suit your particular cluster names and node numbers and shardign setup. 
+a) The dashboards use templating to delineate projects (using _ as the project boundary marker), and also to set node numbers per cluster. Change this logic in the Settings->Templating to suit your particular cluster names and node numbers and sharding setup.
 
-4)	If postgres is receiving stats from perfagent, and the compactionagent, you should see plots immediately, they refresh each minute. 
-5)	Standard grafana features then apply to select individual dbs or multiple.
-6)	The panel can be modified by selecting the title and clicking edit.
-7)	One very useful option is to go to 'Display' and change Hover Tooltip-> StackedValue to cumulative. This shows a total in the hover. You can switch it back to individual as suits.
+_default SQL for project variable_ 
+ 
+```
+SELECT CASE WHEN substring(database,0,position('_' in database)) = ''   
+THEN 'others' ELSE substring(database,0,position('_' in database)) END as project  
+from db_stats where cluster=$cluster and database is not null   
+group by project order by project
+```			
 
-If it is working you should see results like:-
+_default SQL for num\_nodes_  
+
+```
+SELECT case when cluster like '%activesn.bkp.ibm.com' then 1  
+ when cluster like '%cl11c74vip.ibm.com' then 3 else 3 end   
+ from smoosh_stats where cluster=$cluster
+```  
+_default SQL for shards\_per\_node variable_
+
+```
+SELECT case when cluster like '%activesn.bkp.ibm.com' then 8  
+when cluster like '%cl11c74vip.ibm.com' then 8 else 8 end   
+from smoosh_stats where cluster=$cluster
+```  
+
+4)	Inspect tha plots refresh each minute  
+ 
+* If postgres is receiving stats from perfagent, and the compactionagent, you should see plots immediately, they refresh each minute.  
+
+5)	Adjust plot using standard grafana features to select individual dbs and other parameters.  
+
+6)	The panel can be modified by   
+
+* selecting the title and clicking edit.
+* One very useful option is to go to 'Display' and change Hover Tooltip-> StackedValue to cumulative. This shows a total in the hover. You can switch it back to individual as suits.
+
+#### Example dashboard
+
+[dashboard]: dashboard.png
+[dashboard]
  
