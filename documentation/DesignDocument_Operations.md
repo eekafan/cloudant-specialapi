@@ -195,7 +195,8 @@ Successful response from jq....
   "_id": "diagnoosi_potilaan_merkinnan_aika4_20180116224753678724",
   "completed": "2018-01-16 22:49:00.464770"
 }
-```  
+``` 
+ 
 ##Job Results Format
 The job document is returned as json. 
 
