@@ -18,71 +18,111 @@ IBM, the IBM logo, and ibm.com are trademarks or registered trademarks of Intern
 
 #	Features Summary
 ##	Database Operations (_api/managedb)
-This feature is intended to allow temporary 'elevated' privileges for database level operations. This allows users to create and delete databases, but without being granted '_admin' and 'server_admin' privilege. As a result, users can be prevented from seeing database content for sets of databases on a cluster that they share with other users.
-The managedb component supports:
-•	creation of database
-•	deletion of database
-•	reading database endpoint
-for users who do not have '_admin' and 'server_admin' privilege on the cluster.
+This feature is intended to allow temporary 'elevated' privileges for database level operations. This allows users to create and delete databases, but without being granted '_admin' and 'server_admin' privilege. As a result, users can be prevented from seeing database content for sets of databases on a cluster that they share with other users.  
+  
+The managedb component supports:  
+  
+* creation of database
+* deletion of database
+* reading database endpoint  
+  
+for users who do not have '_admin' and 'server_admin' privilege on the cluster.  
+
 The user makes REST calls to the cluster _api/managedb endpoint to achieve these operations.
-Only those users listed in csapi_users file will be authorised.
+Only those users listed in csapi_users file will be authorised.  
+  
 The REST call can use either a AuthSession cookie, or basic authentication.
+  
 The API will test the credentials supplied in the REST call against the cluster cluster-port authentication scheme. Invalid credentials at point of test will mean the call is rejected.  
+  
 Databases are created with members.names = request-username so that the database is read-write to the requesting user, and not world-open to anonymous requests.
 ## Design Document Operations via Operational Queue (_api/migrate)
-This feature is intended to ensure create, update and delete operations on design-documents are processed as an operational queue, which executes in series and so limits the view_update and view_compact volumes on the cluster. 
-For updates, the 'move and shift' technique is used, which ensures that reads with update=true or stale=false (default settings) will not block during the update process.
-The migrate component supports:
-•	submission of create/update job to the queue, returning jobid, if accepted
-•	submission of delete job to the queue, returning jobid if accepted
-•	reading status of job, using a jobid
-•	deletion of designdocument
-The feature can be used by users who do not have 'admin' privilege to a database they are submitting the job for. The api temporarily elevates their privilege. This allows the blocking of design-doc operations via the direct Cloudant api, preventing cluster overload through high numbers of parallel view updates.
-The user makes REST calls to the cluster _api/migrate endpoint to achieve these operations.
-Only those users listed in csapi_users file will be authorised.
-The REST call can use either a AuthSession cookie, or basic authentication.
+This feature is intended to ensure create, update and delete operations on design-documents are processed as an operational queue, which executes in series and so limits the view_update and view_compact volumes on the cluster.   
+  
+For updates, the 'move and shift' technique is used, which ensures that reads with update=true or stale=false (default settings) will not block during the update process.  
+
+The migrate component supports:  
+  
+* submission of create/update job to the queue, returning jobid, if accepted
+* submission of delete job to the queue, returning jobid if accepted
+* reading status of job, using a jobid
+* deletion of designdocument 
+  
+The feature can be used by users who do not have 'admin' privilege to a database they are submitting the job for. The api temporarily elevates their privilege. This allows the blocking of design-doc operations via the direct Cloudant api, preventing cluster overload through high numbers of parallel view updates.  
+  
+The user makes REST calls to the cluster _api/migrate endpoint to achieve these operations.  
+
+Only those users listed in csapi_users file will be authorised.  
+  
+The REST call can use either a AuthSession cookie, or basic authentication.  
+
 The API will test the credentials supplied in the REST call against the cluster cluster-port authentication scheme. Invalid credentials at point of test will mean the call is rejected.  
 
 ## Performance Metrics Collection via Operational Queue (_api/perfagent)
-This feature is intended to provide cluster performance metrics broken down by resource level and time-period. This provides statistics at a finer scope than available from the metrics database which is limited to dbnode or whole-cluster. This allows the breakdown of traffic and performance response rates by database-sets, which may reflect different users/projects/tasks sharing the same cluster.
-Resource levels supported are:
-•	all (ie whole cluster)
-•	database
-•	database + verb (ie reads, writes, deletes, etc)
-•	database,verb,endpoint, where endpoint reflects grouping of requests to endpoint type
-o	_design (ddl operations)
-o	_find (all cloudantquery type calls)
-o	design/view (all map-reduce calls)
-o	documentlevel (all calls to individual docs) 
-o	etc
-•	database,verb,endpoint,document (ie each distinct endpoint counted separate, including every individual document - only use sparingly since it often creates many rows)
-Time-Period granularity levels supported are: minute, hour, day, all (the whole report-period)
-The component processes statistics by inspecting log files generated in the current active haproxy. Statistics reflect the content recorded by that proxy. If a proxy changeover has occurred in the report period requested, then the result is compromised. Consult your cluster dba for a record of such events.
-The log-inspection method is cpu-intensive and can frequently take several minutes, so requests to the api are processed via an operational queue.
-The perfagent component supports:
-•	submission of statistics collect+process job to a queue, returning job id if accepted
-•	collection of status of a job and the result, using the jobid
-The user makes REST calls to the cluster _api/perfagent endpoint to achieve these operations.
-The component supports the detection of threshold-breach conditions within the result. Event fields are placed in the result which identify any breaches.
-The job is submitted with a set of options supplied as parameters to the REST call:
-•	report period defined by 'fromtime' to 'totime'
-•	resource level defined by 'scope'
-•	time-period rollup defined by 'granularity'
-•	outputformat (json or csv). 
-o	If csv, then results are stored in files which are referenced in the job response field
-o	if json, then stats and events are placed in the job response field
-•	location of input file to process
-•	connection information for the queue (allows elevated passwords to change after job submission)
-The component also supports parameters which allow the definition of:
-•	stats exclusions, which means log entries meeting the exclusion criteria are ignored in stats collection
-•	threshold conditions with qualifiers, which are applied to stats results to look for breaches and create events in the results
-•	event exclusions, which means that stats results meeting the exclusion criteria do not have events generated for them, even threshold conditions are breached
-Defaults are applied if parameters are omitted. These are set in a configuration file by the specialapi operator (typically the cluster dba team).
+This feature is intended to provide cluster performance metrics broken down by resource level and time-period. This provides statistics at a finer scope than available from the metrics database which is limited to dbnode or whole-cluster. This allows the breakdown of traffic and performance response rates by database-sets, which may reflect different users/projects/tasks sharing the same cluster.  
+
+Resource levels supported are:  
+  
+* all (ie whole cluster)
+* database
+* database + verb (ie reads, writes, deletes, etc)
+* database,verb,endpoint, where endpoint reflects grouping of requests to endpoint type  
+-- _design (ddl operations)   
+-- 	_find (all cloudantquery type calls)  
+--	design/view (all map-reduce calls)  
+--	documentlevel (all calls to individual docs)  
+--	etc  
+*	database,verb,endpoint,document  
+ (ie each distinct endpoint counted separate, including every individual document - only use sparingly since it often creates many rows)  
+  
+Time-Period granularity levels supported are:  
+  
+* minute, hour, day, all (the whole report-period)  
+  
+The component processes statistics by inspecting log files generated in the current active haproxy.  
+  
+Statistics reflect the content recorded by that proxy. If a proxy changeover has occurred in the report period requested, then the result is compromised. Consult your cluster dba for a record of such events.  
+  
+The log-inspection method is cpu-intensive and can frequently take several minutes, so requests to the api are processed via an operational queue.  
+  
+The perfagent component supports:  
+  
+* submission of statistics collect+process job to a queue, returning job id if accepted  
+* collection of status of a job and the result, using the jobid  
+  
+The user makes REST calls to the cluster _api/perfagent endpoint to achieve these operations.  
+
+The component supports the detection of threshold-breach conditions within the result. Event fields are placed in the result which identify any breaches.  
+  
+The job is submitted with a set of options supplied as parameters to the REST call:  
+
+* report period defined by 'fromtime' to 'totime'  
+* resource level defined by 'scope'  
+* time-period rollup defined by 'granularity'  
+* outputformat (json or csv)  
+-- If csv, then results are stored in files which are referenced in the job response field  
+-- if json, then stats and events are placed in the job response field  
+* location of input file to process
+* connection information for the queue (allows elevated passwords to change after job submission)
+  
+The component also supports parameters which allow the definition of:  
+    
+* stats exclusions, which means log entries meeting the exclusion criteria are ignored in stats collection  
+* threshold conditions with qualifiers, which are applied to stats results to look for breaches and create events in the results  
+* event exclusions, which means that stats results meeting the exclusion criteria do not have events generated for them, even threshold conditions are breached
+    
+Defaults are applied if parameters are omitted. These are set in a configuration file by the specialapi operator (typically the cluster dba team).  
+  
 Only those users listed in csapi_users file will be authorised.
-The REST call can use either a AuthSession cookie, or basic authentication.
+The REST call can use either a AuthSession cookie, or basic authentication.  
+
 The API will test the credentials supplied in the REST call against the cluster cluster-port authentication scheme. Invalid credentials at point of test will mean the call is rejected.  
 
-This feature can be used on a periodic basis to generate stats for a performance management system (say every minute for the previous minute), and events for an event & incident management system. It is convenient, but not essential, to use the command-line invocation method in these cases. This separates these periodic requests from adhoc use. See section 7 for how to integrate the command line with postgres and grafana to view realtime dashboards.
+### Periodic Operation via Cron
+
+This feature can be used on a periodic basis to generate stats for a performance management system (say every minute for the previous minute), and events for an event & incident management system. It is convenient, but not essential, to use the command-line invocation method in these cases.  
+  
+This separates these periodic requests from adhoc use. See <add link here> for how to integrate the command line with postgres and grafana to view realtime dashboards.
 
 This feature can be used on an adhoc basis to gather statistics with various options to support investigation of cluster behaviour broken down by the required resource-level.
 
