@@ -244,7 +244,7 @@ If this is ok. then the perfagent can be configured to connect to _postgres_, an
 ###	perfagent client
 It is assumed that the perfagent itself is installed on the perfagent client server.  
 
-To install the perfagent software itself see [Installing the specialapi] (./Installation.md/#installing-the-specialapi).  
+To install the perfagent software itself see [Installing the specialapi](./Installation.md#installing-the-specialapi).  
 
 The additional step,after the perfagent is installed is to:
 •	install postgres client
