@@ -35,6 +35,8 @@ curl -u middleamd:*** "http://activesn.bkp.ibm.com/_api/perfagent?scope=database
 not available via api call	/usr/bin/python /opt/cloudant-specialapi/compactionagent.py -x  /opt/cloudant-specialapi/perfagent_connection.info
 
 #	Cron-based Collection to Postgres
+[cron setup](#cron-based-collection-to-postgres)  
+
 The command line option can be used to setup regular minute-by-minute metrics collection, which is persisted to a _postgres_ database, for servicing the _grafana_ dashboards.
 
 Grafana only postgres or mysql as SQL type sources out-of-the-box.  
