@@ -1,9 +1,58 @@
 from flask import request, Response
 import json
 import datetime
-from perfagent_menu import *
-from perfagent_collect import *
 import api_utils
+
+def process_defaults_config(cfile):
+    default_connectioninfo = '/opt/cloudant-performancecollector/perfagent_connection.info'
+    default_certificate_verification = False
+    default_requests_ca_bundle = '/opt/cloudant-performancecollector/ca.pem'
+    default_inputlogfile = '/var/log/haproxy.log'
+    default_thresholdsfile = '/opt/cloudant-performancecollector/perfagent_thresholds.info'
+    default_eventsexclusionsfile = '/opt/cloudant-performancecollector/perfagent_eventsexclusions.info'
+    default_statsexclusionsfile = '/opt/cloudant-performancecollector/perfagent_statsexclusions.info'
+    default_scope = 'endpoint'
+    default_granularity = 'hour'
+    default_performercount = 10
+    default_resultslocation = '/opt/cloudant-performancecollector/perfagent_results'
+    default_outputformat = 'csv'
+    if cfile and os.path.isfile(cfile):
+      cf = open(cfile,'r')
+      cflines = cf.readlines()
+      for cfline in cflines:
+          cflineparts = cfline.split()
+          if len(cflineparts) == 2 and cflineparts[0] == 'default_connectioninfo':
+             default_connectioninfo = cflineparts[1] 
+          elif len(cflineparts) == 2 and cflineparts[0] == 'default_certificate_verification':
+             default_certificate_verification = cflineparts[1] 
+          elif len(cflineparts) == 2 and cflineparts[0] == 'default_requests_ca_bundle':
+             default_requests_ca_bundle = cflineparts[1] 
+          elif len(cflineparts) == 2 and cflineparts[0] == 'default_inputlogfile':
+             default_inputlogfile = cflineparts[1] 
+          elif len(cflineparts) == 2 and cflineparts[0] == 'default_thresholdsfile':
+             default_thresholdsfile = cflineparts[1] 
+          elif len(cflineparts) == 2 and cflineparts[0] == 'default_eventsexclusionsfile':
+             default_eventsexclusionsfile = cflineparts[1] 
+          elif len(cflineparts) == 2 and cflineparts[0] == 'default_statsexclusionsfile':
+             default_statsexclusionsfile = cflineparts[1] 
+          elif len(cflineparts) == 2 and cflineparts[0] == 'default_scope':
+             default_scpe = cflineparts[1] 
+          elif len(cflineparts) == 2 and cflineparts[0] == 'default_granularity':
+             default_granularity = cflineparts[1] 
+          elif len(cflineparts) == 2 and cflineparts[0] == 'default_performercount':
+             default_performercount = cflineparts[1] 
+          elif len(cflineparts) == 2 and cflineparts[0] == 'default_resultslocation':
+             default_resultslocation = cflineparts[1] 
+          elif len(cflineparts) == 2 and cflineparts[0] == 'default_outputformat':
+             default_outputformat = cflineparts[1] 
+          else:
+             pass
+      cf.close()
+    return default_connectioninfo, default_certificate_verification,default_requests_ca_bundle,default_inputlogfile,\
+           default_thresholdsfile, default_eventsexclusionsfile,default_statsexclusionsfile,default_scope,default_granularity,\
+           default_performercount, default_resultslocation, default_outputformat
+
+
 
 def process_timeperiod(fromtime,totime):
     if totime is None or totime == 'now':
