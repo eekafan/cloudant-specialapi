@@ -16,10 +16,6 @@ else
  url=$3
 fi
 
-echo $user
-echo $password
-echo $url
-
 epoch=`date +%%Y%m%d%H%M%S`
 ./csa-test-managedb-unauth.sh $user $password $url > ./resultlog/csa-managedb-unauth.log
 ./csa-test-managedb-pass.sh $user $password $url > ./resultlog/csa-managedb-pass.log
