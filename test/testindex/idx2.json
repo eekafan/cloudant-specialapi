@@ -1,0 +1,1 @@
+{ "index": { "fields": ["potilaanSyntymaAika.value" ] }, "name" : "potilaanSyntymaAika-index2" }
