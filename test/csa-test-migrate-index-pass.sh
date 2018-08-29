@@ -7,10 +7,11 @@ echo 'CREATE testindexdb via api - expect pass'
 echo ''
 curl --insecure -u $1:$2 $3/_api/managedb/testindexdb100000 -X PUT
 echo ''
-echo 'SUBMIT CREATE two index via api - pass'
+echo 'SUBMIT CREATE three index via api - pass'
 echo ''
 curl --insecure -u $1:$2 $3/_api/migrate/testindexdb100000/_index -X POST -d @testindex/idx1.json
 curl --insecure -u $1:$2 $3/_api/migrate/testindexdb100000/_index -X POST -d @testindex/idx2.json
+curl --insecure -u $1:$2 $3/_api/migrate/testindexdb100000/_index -X POST -d @testindex/idx3.json
 echo ''
 echo 'sleeping 20 seconds to allow jobs to be serviced before list attempt'
 sleep 20
