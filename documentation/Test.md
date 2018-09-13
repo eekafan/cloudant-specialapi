@@ -31,101 +31,6 @@ Cluster URL (including http(s)): https://cl11c74vip.ibm.com
 running managedb tests
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
-100   107    0   107    0     0   1493      0 --:--:-- --:--:-- --:--:--  1507
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-100   107    0   107    0     0   2611      0 --:--:-- --:--:-- --:--:--  2675
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-100   107    0   107    0     0   2766      0 --:--:-- --:--:-- --:--:--  2815
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-100    35  100    35    0     0    807      0 --:--:-- --:--:-- --:--:--   813
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-100    35  100    35    0     0    893      0 --:--:-- --:--:-- --:--:--   897
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-100    35  100    35    0     0    790      0 --:--:-- --:--:-- --:--:--   795
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-100    35  100    35    0     0    832      0 --:--:-- --:--:-- --:--:--   853
-running migrate-view tests
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-100    35  100    35    0     0    819      0 --:--:-- --:--:-- --:--:--   833
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-100    35  100    35    0     0    761      0 --:--:-- --:--:-- --:--:--   777
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-100   725  100    35  100   690    690  13607 --:--:-- --:--:-- --:--:-- 13800
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-100   725  100    35  100   690    806  15892 --:--:-- --:--:-- --:--:-- 16046
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-100   737  100    35  100   702    748  15019 --:--:-- --:--:-- --:--:-- 15260
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-100    35  100    35    0     0    428      0 --:--:-- --:--:-- --:--:--   432
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-100   797    0   107  100   690   1907  12297 --:--:-- --:--:-- --:--:-- 12545
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-100   797    0   107  100   690   1755  11318 --:--:-- --:--:-- --:--:-- 11500
-running migrate-index tests
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-100    35  100    35    0     0    585      0 --:--:-- --:--:-- --:--:--   593
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-100    35  100    35    0     0    607      0 --:--:-- --:--:-- --:--:--   614
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-100   179  100    35  100   144    573   2359 --:--:-- --:--:-- --:--:--  2360
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-100   131  100    35  100    96    534   1465 --:--:-- --:--:-- --:--:--  1476
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-100   181  100    35  100   146    585   2443 --:--:-- --:--:-- --:--:--  2474
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-100   422  100   422    0     0   1352      0 --:--:-- --:--:-- --:--:--  1356
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-100    48  100    48    0     0    519      0 --:--:-- --:--:-- --:--:--   521
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-100   243  100    99  100   144   1032   1502 --:--:-- --:--:-- --:--:--  1515
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-100    12  100    12    0     0    220      0 --:--:-- --:--:-- --:--:--   222
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-100   422  100   422    0     0   9714      0 --:--:-- --:--:-- --:--:--  9813
-sleeping 60 seconds and then collecting logs in case problems with jobs
-resultlog/csa-managedb-pass.log
-resultlog/csa-managedb-unauth.log
-resultlog/csa-migrate-index-pass.log
-resultlog/csa-migrate-index-unauth.log
-resultlog/csa-migrate-view-pass.log
-resultlog/csa-migrate-view-unauth.log
-resultlog/csa-migrate-worker.log
-[root@cl11c74lb1 test]# pwd
-/root/software/cloudant-specialapi-27.0.2/test
-[root@cl11c74lb1 test]# ls
-csa-testall.sh             csa-test-managedb-unauth.sh     csa-test-migrate-index-unauth.sh  csa-test-migrate-view-unauth.sh  testindex
-csa-test-managedb-pass.sh  csa-test-migrate-index-pass.sh  csa-test-migrate-view-pass.sh     resultlog                        testview
-[root@cl11c74lb1 test]# ./csa-testall.sh
-Username: northamd
-Password:
-Cluster URL (including http(s)): https://cl11c74vip.ibm.com
-running managedb tests
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
 100    72  100    72    0     0    885      0 --:--:-- --:--:-- --:--:--   888
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
@@ -281,9 +186,6 @@ UPDATE existing view direct - expect fail
 Here is an example set of the 'expected pass' results logs
 
 ```
-cat resultlog/*pass.log
-cat: cat: No such file or directory
-
 READ db via api - pass
 
 {"update_seq": "9030-g1AAAAG7eJzLYWBg4MhgTmGQTs7JL01JzCtxSM4xNEw2N0lJMtTLTMrVS87PzQEqYkpkSJL__  
