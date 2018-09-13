@@ -69,7 +69,7 @@ This feature is intended to allow interaction with the cloudant-performancecolle
 * The api is used to submit a job which is serviced by the cloudant-performancecollector tool. 
 * The api tests the credentials supplied in the job submission  REST call. Invalid credentials will mean the call is rejected and the job is not submitted.
 * The cloudant-performancecollector services one job at a time to limit the cpu usage overhead of performance collection and processing.
-* The results are placed in JSON format by the performancecollector into a database which can be accessed via the api. The job is marked completed once the results are placed. 
+* The results are placed in JSON format by the performancecollector into the job document which can be read via the api. The job is marked completed once the results are placed. 
 
 
 The results provide:  
