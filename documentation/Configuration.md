@@ -44,5 +44,3 @@ Any value other than 'enabled' disables the specific feature.
 The API can be configured to allow specific users the right to use it. Correct credentials must also be supplied in the call.
 The valid list of users is listed in csapi_users.
 
-##	API worker configuration
-The perfagent api runs a worker
