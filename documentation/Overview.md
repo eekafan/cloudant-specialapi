@@ -1,4 +1,3 @@
-
 # Introduction
 ## Release Information
 This document version is aligned with Release 27.0.3
