@@ -1,6 +1,9 @@
-#Design Document Operations via Operational Queue (_api/migrate)
+#View Design Document Operations via Operational Queue (_api/migrate)
 ##	Overview
-The user or application submits a job request for a design-document to be created or updated on a database, and supplies the design-document as the request.body (using the PUT or POST verb).  
+The user or application submits a job request for a view design-document to be created or updated on a database, and supplies the design-document as the request.body (using the PUT or POST verb).  
+
+view design documents have a "views" field within them.  
+
 If the job is accepted then an id will be returned.  
 The queue processor will then process the job using submission time order ( a fifo queue).  
 If the processor finds the design-document is a new document in the required db:  
