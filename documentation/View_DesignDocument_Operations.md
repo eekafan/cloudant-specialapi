@@ -1,5 +1,5 @@
-#View Design Document Operations via Operational Queue (_api/migrate)
-##	Overview
+# View Design Document Operations via Operational Queue (_api/migrate)
+## Overview
 The user or application submits a job request for a view design-document to be created or updated on a database, and supplies the design-document as the request.body (using the PUT or POST verb).  
 
 view design documents have a "views" field within them.  
@@ -24,8 +24,8 @@ If the processor finds the design-document is an update to an existing document 
 
 The user or job then polls the api for a result using the id returned from the accepted submission.  
 Failed jobs will have status='failed' with job.info storing identified reasons.
-##	View Examples
-###	Submissions
+## View Examples
+### Submissions
 Example submission of a job to update/create an existing view
 
 ```
@@ -40,7 +40,7 @@ Successful reply with job id of <dbid>_<ddid>_submissiontime
 "id": "diagnoosi_potilaan_merkinnan_aika4_20180116223622553485"}  
 ``` 
 
-###	Deletes
+### Deletes
 Example submission of a job to delete an existing view
 
 ```
@@ -52,9 +52,8 @@ Successful reply
 ```
 {"rev": "15-173a755ac0fcaec166057cde9106a1af", "ok": true,  
 "id": "_design/potilaan_merkinnan_aika4"}
-```	
-
-###	Job Results Collection
+```
+### Job Results Collection
 Poll status with a GET  
   
 ```
@@ -95,8 +94,9 @@ Successful response from jq....
   "_id": "diagnoosi_potilaan_merkinnan_aika4_20180116224753678724",
   "completed": "2018-01-16 22:49:00.464770"
 }
-```  
-##Job Results Format
+``` 
+
+## Job Results Format
 The job document is returned as json. 
 
 * _id	
@@ -155,17 +155,14 @@ Successful reply
 ```
 {"rev": "15-173a755ac0fcaec166057cde9106a1af", "ok": true,  
 "id": "_design/potilaan_merkinnan_aika4"}
-```	
-
-###	Job Results Collection
+```
+### Job Results Collection
 Poll status with a GET  
   
 ```
 curl -u northamd:*** http://activesn.bkp.ibm.com/_api/migrate/  
 diagnoosi_potilaan_merkinnan_aika4_20180116224753678724 | ./jq  
-```
-
-
+```  
 Successful response from jq....
 
 ```
@@ -199,7 +196,7 @@ Successful response from jq....
   "completed": "2018-01-16 22:49:00.464770"
 }
 ``` 
- 
+
 ##Job Results Format
 The job document is returned as json. 
 
