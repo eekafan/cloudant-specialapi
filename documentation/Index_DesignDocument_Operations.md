@@ -1,5 +1,5 @@
-#Index Design Document Operations via Operational Queue (_api/migrate)
-##	Overview
+# Index Design Document Operations via Operational Queue (_api/migrate)
+## Overview
 The user or application submits a job request for a index design-document to be created or updated on a database, and supplies the design-document as the request.body (using the PUT or POST verb).  
 
 index design documents have a "views" field within them, and are controlled via  "_index/ddocname" endpoints.  
@@ -10,8 +10,8 @@ For index design documents, this is achieved by a direct PUT. There are no mecha
 
 The user or job then polls the api for a result using the id returned from the accepted submission.  
 Failed jobs will have status='failed' with job.info storing identified reasons.
-##	Index Examples
-###	Submissions
+## Index Examples
+### Submissions
 Example submission of a job to update/create an index. Note the syntax is the same for an existing or new index
 
 ```
@@ -26,7 +26,7 @@ Successful reply with job id of <dbid>_<ddid>_submissiontime
  "id": "testindexdb100000_index_20180920100008280969"} 
 ``` 
 
-###	Deletes
+### Deletes
 Example submission of a request via api to delete an existing index (a queue job is not submitted - it is executed directly), which could be one of several in an individual design document. The type, as in 'json' is required.
 
 ```
@@ -39,9 +39,8 @@ Successful reply
   
 ```
 {"ok": true}
-```	
-
-###	Job Results Collection
+```
+### Job Results Collection
 Poll status with a GET  
   
 ```
@@ -68,7 +67,7 @@ Successful response
 }
 
 ```  
-##Job Results Format
+## Job Results Format
 The job document is returned as json. 
 
 * _id	
